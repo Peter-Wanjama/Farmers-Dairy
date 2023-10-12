@@ -34,5 +34,20 @@ class DbCtl {
             res.status(500).json({ error: e.message })
         }
     }
+    static async modifyUser(req, res, next) {
+        try {
+            var user = {};
+            user.username = req.body.username;
+            user.username=user.username.replace(/[^a-zA-Z ]/g, "");
+            user.phone = req.body.phone;
+            user.password = await bcrypt.hash(req.body.password, 10);
+            const db_response = await UserDAO.modifyUser(user)
+            // console.log("database controller:", db_response)
+            res.status(200).json({ success: "password reset successful" })
+        } catch (e) {
+            console.error("Error occured:", e.message);
+            res.status(500).json({ error: e.message })
+        }
+    }
 }
 module.exports = DbCtl

@@ -74,7 +74,7 @@ export default function SignInUp() {
             <Input onChangeText={(text) => setNewPassword2(text)} type="password" />
           </FormControl>
           {(new_password1.length < 16 || new_password1 === new_password2) ?
-            <Button type="submit" onPress={() => submitSignup()} mt="2" colorScheme="primary">Sign up
+            <Button type="submit" onPress={() => {setIndex(0); submitSignup();}} mt="2" colorScheme="primary">Sign up
             </Button>
             : <Button type="submit" isDisabled mt="2" colorScheme="primary">Sign up
             </Button>
@@ -84,8 +84,8 @@ export default function SignInUp() {
       </Box>
     </Center>;
   };
-  const [username, setUsername] = React.useState('')
   const SignIn = () => {
+    const [username, setUsername] = React.useState('')
     const [password, setPassword] = React.useState('')
     const submitSignin = async () => {
       const formdata = {};
@@ -231,11 +231,11 @@ export default function SignInUp() {
           Enter your phone number and we'll send a code to use as your temporary password.
           <FormControl mt="3">
             <FormControl.Label>Username</FormControl.Label>
-            <Input defaultValue={username} onChangeText={(text) => setfUsername(text)} />
+            <Input onChangeText={(text) => setfUsername(text)} />
           </FormControl>
           <FormControl mt="3">
             <FormControl.Label>Phone</FormControl.Label>
-            <Input keyboardType="phone-pad" onChangeText={(text) => setfPhone(text)} />
+            <Input keyboardType="phone-pad" maxLength={9} onChangeText={(text) => setfPhone(text)} />
           </FormControl>
           <FormControl mt="3">
             <FormControl.Label>New Password</FormControl.Label>

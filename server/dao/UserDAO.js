@@ -25,6 +25,15 @@ class UserDAO{
             return null;
         }
     }
+    static async modifyUser (user) {
+        const result= await users.findOne({username:user.username,phone:user.phone})
+        if(result){
+            return await users.updateOne(
+                {_id:result._id},
+                {$set:user}
+                );
+        }else return null
+    }
 }
  
 module.exports = UserDAO

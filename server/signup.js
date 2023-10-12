@@ -20,5 +20,6 @@ router.use(bodyParser.urlencoded({
 //     console.log(new_user)
 // })
 router.route("/").post(DbCtl.postUser)
+router.route("/").put(DbCtl.modifyUser)
 
 module.exports= router
