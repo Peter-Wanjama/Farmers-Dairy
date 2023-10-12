@@ -55,7 +55,7 @@ MongoClient.connect(
     .then(async client=>{
         await UserDAO.injectDB(client);
         app.listen(port,()=>{
-        console.log(`listening on port ${port}`)})
+        console.log(`Server started at port ${port}`)})
     })
 
 //  app.listen(port,()=>{ console.log(`listening on port ${port}`)})

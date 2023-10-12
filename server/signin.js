@@ -10,15 +10,6 @@ router.use(bodyParser.urlencoded({
     extended: true
 }));
  
-
-// router.route("/").post(async(req,res)=>{
-//     var new_user={};
-//     new_user.username=req.body.username;
-//     new_user.phone=req.body.phone;
-//     new_user.password=await bcrypt.hash(req.body.password,10);
-//     res.status(200).json({success:"signup successful",new_user})
-//     console.log(new_user)
-// })
 router.route("/").post(DbCtl.getUser)
 
 module.exports= router

@@ -8,10 +8,9 @@ const app=express()
 
 app.use(cors())
 app.use(express.json())
-app.use('/reviews',reviews)
 app.use("/signup",signup)
 app.use("/signin",signin)
 app.use("*",(req,res)=>
 res.status(404).json({error:"not found"}))
 
- module.exports= app
+module.exports= app
