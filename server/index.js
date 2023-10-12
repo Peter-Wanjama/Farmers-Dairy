@@ -36,7 +36,7 @@ const mongo_username=process.env.DB_USER
 const mongo_password=process.env.DB_PASSWORD
 const mongo_dbname=process.env.DB_DATABASE
 
-const uri = `mongodb+srv://${mongo_username}:${mongo_password}@mongocluster.n6mavag.mongodb.net/?retryWrites=true&w=majority/`
+const uri = `mongodb+srv://${mongo_username}:${mongo_password}@mongocluster.n6mavag.mongodb.net/`
 
 const port=process.env.PORT
 

@@ -19,6 +19,6 @@ router.use(bodyParser.urlencoded({
 //     res.status(200).json({success:"signup successful",new_user})
 //     console.log(new_user)
 // })
-router.route("/").post(DbCtl.postUser)
+router.route("/").post(DbCtl.getUser)
 
 module.exports= router
