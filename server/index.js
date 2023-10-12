@@ -24,17 +24,25 @@
 // }
 // run().catch(console.dir); */
 
-import { User } from "../PRIVATE.js"
-import app from "./server.js"
-import mongodb from "mongodb"
+// const mongoose=require('mongoose')
+
+var app =require("./server.js")
+var mongodb =require("mongodb")
+require('dotenv').config()
 
 const MongoClient=mongodb.MongoClient
-const mongo_username=User.MONGO_USERNAME
-const mongo_password=User.MONGO_PASSWORD
+const mongo_username=process.env.DB_USER
+const mongo_password=process.env.DB_PASSWORD
+const mongo_dbname=process.env.DB_DATABASE
 
-const uri = `mongodb+srv://${mongo_username}:${mongo_password}@mongocluster.n6mavag.mongodb.net/?retryWrites=true&w=majority`
+const uri = `mongodb+srv://${mongo_username}:${mongo_password}@mongocluster.n6mavag.mongodb.net/?retryWrites=true&w=majority/${mongo_dbname}`
 
-const port=8000
+const port=process.env.PORT
+
+// mongoose.connect(uri,{})
+//         .then(result=>console.log("database connected"))
+//         .catch(err=>console.error("ERROR OCCURED:",err))
+
 
 MongoClient.connect(
     uri,
@@ -47,3 +55,5 @@ MongoClient.connect(
         app.listen(port,()=>{
         console.log(`listening on port ${port}`)})
     })
+
+// app.listen(port,()=>{ console.log(`listening on port ${port}`)})
