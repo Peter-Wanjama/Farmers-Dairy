@@ -26,6 +26,7 @@
 
 // const mongoose=require('mongoose')
 
+const UserDAO = require("./dao/UserDAO.js")
 var app =require("./server.js")
 var mongodb =require("mongodb")
 require('dotenv').config()
@@ -35,7 +36,7 @@ const mongo_username=process.env.DB_USER
 const mongo_password=process.env.DB_PASSWORD
 const mongo_dbname=process.env.DB_DATABASE
 
-const uri = `mongodb+srv://${mongo_username}:${mongo_password}@mongocluster.n6mavag.mongodb.net/?retryWrites=true&w=majority/${mongo_dbname}`
+const uri = `mongodb+srv://${mongo_username}:${mongo_password}@mongocluster.n6mavag.mongodb.net/?retryWrites=true&w=majority/`
 
 const port=process.env.PORT
 
@@ -52,8 +53,9 @@ MongoClient.connect(
         useNewUrlParser:true
     }).catch(err=>{console.error(err.stack);process.exit(1)})
     .then(async client=>{
+        await UserDAO.injectDB(client);
         app.listen(port,()=>{
         console.log(`listening on port ${port}`)})
     })
 
-// app.listen(port,()=>{ console.log(`listening on port ${port}`)})
+//  app.listen(port,()=>{ console.log(`listening on port ${port}`)})
